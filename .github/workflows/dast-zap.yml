@@ -33,6 +33,7 @@ jobs:
         with:
           target: 'http://host.docker.internal:4000'
           allow_issue_writing: false
+          artifact_name: zap-report-fastbank-insecure
 
   zap-fastbank-auth:
     runs-on: ubuntu-latest
@@ -61,6 +62,7 @@ jobs:
         with:
           target: 'http://host.docker.internal:3000'
           allow_issue_writing: false
+          artifact_name: zap-report-fastbank-auth
 
   zap-idor:
     runs-on: ubuntu-latest
@@ -89,6 +91,7 @@ jobs:
         with:
           target: 'http://host.docker.internal:3000'
           allow_issue_writing: false
+          artifact_name: zap-report-idor
 
   zap-canonicalization:
     runs-on: ubuntu-latest
@@ -117,3 +120,4 @@ jobs:
         with:
           target: 'http://host.docker.internal:3000'
           allow_issue_writing: false
+          artifact_name: zap-report-canonicalization
