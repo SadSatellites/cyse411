@@ -50,13 +50,17 @@ app.post(
   }
 );
 
-// Vulnerable route (demo)
+// Fixed route (was vulnerable demo)
 app.post('/read-no-validate', (req, res) => {
   const filename = req.body.filename || '';
-  const joined = path.join(BASE_DIR, filename); // intentionally vulnerable
-  if (!fs.existsSync(joined)) return res.status(404).json({ error: 'File not found', path: joined });
-  const content = fs.readFileSync(joined, 'utf8');
-  res.json({ path: joined, content });
+  // Only allow alphanumeric, dash, underscore, and dot
+  if (!/^[\w.-]+$/.test(filename)) {
+    return res.status(400).json({ error: 'Invalid filename' });
+  }
+  const filePath = BASE_DIR + '/' + filename;
+  if (!fs.existsSync(filePath)) return res.status(404).json({ error: 'File not found' });
+  const content = fs.readFileSync(filePath, 'utf8');
+  res.json({ path: filePath, content });
 });
 
 // Helper route for samples
