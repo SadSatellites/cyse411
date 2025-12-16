@@ -6,6 +6,7 @@ const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 
 const app = express();
+app.disable('x-powered-by');
 const PORT = 3001;
 
 app.use(bodyParser.urlencoded({ extended: false }));

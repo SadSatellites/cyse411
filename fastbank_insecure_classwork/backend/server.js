@@ -6,6 +6,7 @@ const sqlite3 = require("sqlite3").verbose();
 const crypto = require("crypto");
 
 const app = express();
+app.disable('x-powered-by');
 
 // --- BASIC CORS (clean, not vulnerable) ---
 app.use(
